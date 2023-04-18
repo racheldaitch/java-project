@@ -11,6 +11,17 @@ import app.core.exception.CouponSystemException;
 public interface CompanyRepository extends JpaRepository<Company, Integer> {
 
 	/**
+	 * The method receives a company's email or password, and checks in the database
+	 * whether the company exists in the companies table.
+	 * 
+	 * @param email    - of a company.
+	 * @param password - of a company.
+	 * @return boolean value does the company exist by email and password.
+	 * @throws CouponSystemException if the data check against the database failed.
+	 */
+	boolean existsByEmailOrPassword(String email, String password) throws CouponSystemException;
+
+	/**
 	 * The method receives a company's email and password, and checks in the
 	 * database whether the company exists in the companies table.
 	 * 
@@ -20,6 +31,17 @@ public interface CompanyRepository extends JpaRepository<Company, Integer> {
 	 * @throws CouponSystemException if the data check against the database failed.
 	 */
 	boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
+
+	/**
+	 * The method receives a company's email and checks in the database whether the
+	 * company exists in the companies table.
+	 * 
+	 * @param email    - of a company.
+	 * @param password - of a company.
+	 * @return boolean value does the company exist by email .
+	 * @throws CouponSystemException if the data check against the database failed.
+	 */
+	boolean existsByEmail(String email) throws CouponSystemException;
 
 	/**
 	 * The method receives a company's name and email and checks in the database

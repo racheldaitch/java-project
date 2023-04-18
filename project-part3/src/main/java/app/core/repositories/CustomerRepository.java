@@ -22,6 +22,18 @@ public interface CustomerRepository extends JpaRepository<Customer, Integer> {
 	boolean existsByEmailAndPassword(String email, String password) throws CouponSystemException;
 
 	/**
+	 * The method receives a customer's email and password or checks in the database
+	 * whether the customer exists in the customers table.
+	 * 
+	 * @param email    - of a customer.
+	 * @param password - of a customer.
+	 * @return boolean value does the customer exist in the database using the email
+	 *         and password.
+	 * @throws CouponSystemException if the data check against the database failed.
+	 */
+	boolean existsByEmailOrPassword(String email, String password) throws CouponSystemException;
+
+	/**
 	 * The method receives a customer's email and checks in the database whether the
 	 * customer exists in the customers table.
 	 * 
