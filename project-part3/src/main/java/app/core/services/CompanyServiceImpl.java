@@ -60,7 +60,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 	@Override
 	public Coupon addCoupon(Coupon coupon, int companyId) throws CouponSystemException {
 		if (companyRepository.isCompanyTitleExists(coupon.getTitle(), companyId)) {
-			throw new CouponSystemException("There is a coupon with this title - can't add");
+			throw new CouponSystemException("The company has a coupon with this title - can't add");
 		} else if (coupon.getEndDate().before(coupon.getStartDate())) {
 			throw new CouponSystemException("End date cannot be before start date");
 		}
@@ -88,6 +88,9 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 			throw new CouponSystemException("company id cannot be updated");
 		} else if (coupon.getEndDate().before(coupon.getStartDate())) {
 			throw new CouponSystemException("End date cannot be before start date");
+		} else if (companyRepository.isCompanyTitleExists(coupon.getTitle(), companyId)
+				&& !coupon.getTitle().equals(couponFromDb.getTitle())) {
+			throw new CouponSystemException("The company has a coupon with this title - can't update");
 		}
 		couponFromDb.setCategory(coupon.getCategory());
 		couponFromDb.setTitle(coupon.getTitle());
