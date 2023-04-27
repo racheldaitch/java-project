@@ -44,7 +44,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 			System.out.println(company.getId());
 			return this.jwtUtil.generateToken(userCredentials);
 		}
-		throw new LoginException("Loging failed - Email or Password is wrong!");
+		throw new LoginException("Email or Password is wrong!");
 	}
 
 	/**
@@ -65,6 +65,7 @@ public class CompanyServiceImpl extends ClientService implements CompanyService 
 			throw new CouponSystemException("End date cannot be before start date");
 		}
 		coupon.setCompany(getCompanyDetails(companyId));
+
 		return couponRepository.save(coupon);
 	}
 

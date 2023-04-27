@@ -41,7 +41,7 @@ public class CustomerServiceImpl extends ClientService implements CustomerServic
 			userCredentials.setName(customer.getFirstName() + " " + customer.getLastName());
 			return this.jwtUtil.generateToken(userCredentials);
 		}
-		throw new LoginException("Loging failed - Email or Password is wrong!");
+		throw new LoginException("Email or Password is wrong!");
 	}
 
 	/**
