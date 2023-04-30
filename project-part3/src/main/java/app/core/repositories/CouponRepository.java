@@ -82,7 +82,7 @@ public interface CouponRepository extends JpaRepository<Coupon, Integer> {
 	 *                               same type in the database.
 	 */
 	@Modifying
-	@Query(value = "insert into `customer_vs_coupons` values(?, ?);", nativeQuery = true)
+	@Query(value = "insert into `customer_vs_coupons` (customer_id, coupon_id) values(?, ?);", nativeQuery = true)
 	void addCouponPurchase(int customerID, int couponID) throws CouponSystemException;
 
 	/**
